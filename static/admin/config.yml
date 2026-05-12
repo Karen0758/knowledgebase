@@ -4,6 +4,9 @@ backend:
   branch: main
   base_url: https://api.netlify.com
 
+site_url: https://karen0758.github.io/knowledgebase
+display_url: https://karen0758.github.io/knowledgebase
+
 media_folder: "static/images"
 public_folder: "/images"
 
