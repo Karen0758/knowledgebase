@@ -1,0 +1,23 @@
+{{- $url := .Destination -}}
+{{- $alt := .Text -}}
+{{- $isExternal := or (hasPrefix $url "http://") (hasPrefix $url "https://") -}}
+{{- if $isExternal -}}
+  <img src="{{ $url }}" alt="{{ $alt }}" loading="lazy" />
+{{- else -}}
+  {{- $path := $url -}}
+  {{- if hasPrefix $path "/" -}}
+    {{- $path = strings.TrimPrefix "/" $path -}}
+  {{- end -}}
+  {{- $img := resources.Get $path -}}
+  {{- if $img -}}
+    {{- /* Resize if wider than 1200px */ -}}
+    {{- if gt $img.Width 1200 -}}
+      {{- $img = $img.Resize "1200x webp q80" -}}
+    {{- else -}}
+      {{- $img = $img.Process "webp q80" -}}
+    {{- end -}}
+    <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy" />
+  {{- else -}}
+    <img src="{{ $url }}" alt="{{ $alt }}" loading="lazy" />
+  {{- end -}}
+{{- end -}}

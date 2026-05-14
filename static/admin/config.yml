@@ -6,7 +6,7 @@ backend:
 site_url: https://karen0758.github.io/knowledgebase
 display_url: https://karen0758.github.io/knowledgebase
 
-media_folder: "static/images"
+media_folder: "assets/images"
 public_folder: "/images"
 
 locale: "zh_Hans"
